@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <nav id="header">
+        <div>
+            <h3>PET WORLD</h3>
+        </div>
+        <a href="#home">HOME</a>
+        <a href="#category">CATEGORIES</a>
+        <a href="#contact">CONTACT</a>
+        <a href="./Assets/pages/html/login.html" id="login">LOGIN</a> 
+        <div>
+            <a href="./Assets/pages/html/search.html">
+                <img src="./Assets/Images/search_icon.png" alt="search icon" class="search" id="searchBar">
+            </a>
+        </div>
+        
+        <div>
+            <a href="./Assets/pages/html/wishlist.html">
+            <img src="./Assets/Images/my-wish-list.png" class="wishlist-image" alt="wishlist-icon">
+            </a>
+        </div>
+        <div>
+            <a href="./Assets/pages/html/cart.html">
+            <img src="./Assets/Images/Add-to-cart-image.webp" class="atoc-img" alt="add-to-cart-icon">
+            <span id="cart-count">0</span>
+            </a>
+        </div>
+        <div>
+            <a href="./Assets/pages/html/account.html">
+            <img src="./Assets/Images/profile-img.png" class="profile-image" alt="profile-icon">
+            </a>
+        </div>
+    </nav>
+    </header>
+    
+    <main>
+        <section>
+        <!-- Slide show -->
+        <div id="home"></div>
+        <div class="slideshow-container">
+            <div class="slide">
+              <img src="./Assets/Images/petwithtoy.jpg" alt="Slide 1">
+            </div>
+            <div class="slide">
+              <img src="./Assets/Images/homepage_dogwithfood_img.jpg" alt="Slide 2">
+            </div>
+            <div class="slide">
+              <img src="./Assets/Images/web2_img.jpg" alt="Slide 3">
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+            <div class="dots"></div>
+          </div>
+        </section>
+          <!-- categories -->
+
+        <section>
+            <div class="categories" id="category"></div>
+            
+            <h1>Categories</h1>
+            
+            <div id="categories" class="pro_container"></div>
+
+        </section>
+
+        <section >
+            <h1>Contact</h1>
+            <!-- Contact Section -->
+            <div class="contact-section" id="contact">
+              <div class="contact-info">
+                <h2>Contact Us</h2>
+                <div class="info-item">
+                  <img src="./Assets/Images/email-icon.webp" alt="Email Icon" class="info-icon">
+                  <p>petworld@gmail.com</p>
+                </div>
+                <div class="info-item">
+                  <img src="./Assets/Images/Phone_icon.png" alt="Phone Icon" class="info-icon">
+                  <p>+123 456 7890</p>
+                </div>
+              </div>
+              <div class="contact-form-container">
+                <form id="contact-form">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required>
+                
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+                
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+                
+                  <button type="submit">Send Message</button>
+                </form>
+              </div>
+            </div>
+          </section>
+          
+        
+    </main>
+    <script src="./script.js"></script>
+    <script src="./Assets/pages/js/products.js"></script>
+
+</body>
+</html>
