@@ -51,7 +51,8 @@ setInterval(nextSlide, 5000);
 
 // display categories
 
-fetch('http://localhost:8000/category/')
+// fetch('http://localhost:8000/category/')
+fetch('https://sandhiyapattabiraman.github.io/Python--Backend/category/')
 .then(response => response.json())
 .then(data => {
   const categoriesContainer = document.getElementById("categories");
