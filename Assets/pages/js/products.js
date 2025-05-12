@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  fetch("http://localhost:8000/wishlist/", {
+  fetch("https://pet-world-fastapi-spsz.onrender.com/wishlist/", {
     headers: {
       "Authorization": `Bearer ${token}`
     }
@@ -31,7 +31,7 @@ function loadCategoryProducts() {
   const categoryName = params.get("category");
 
   if (categoryName) {
-    fetch(`http://localhost:8000/products/get?categoryname=${categoryName}`)
+    fetch(`https://pet-world-fastapi-spsz.onrender.com/products/get?categoryname=${categoryName}`)
       .then(response => response.json())
       .then(products => {
         const productContainer = document.getElementById("items");
@@ -91,7 +91,7 @@ function addToCart(productId) {
     quantity: 1
   };
 
-  fetch('http://localhost:8000/cart/addToCart', {
+  fetch('https://pet-world-fastapi-spsz.onrender.com/cart/addToCart', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ function updateNavbarCartCount() {
   const token = localStorage.getItem("user");
   if (!token) return;
 
-  fetch("http://127.0.0.1:8000/cart/", {
+  fetch("https://pet-world-fastapi-spsz.onrender.com/cart/", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`
@@ -149,7 +149,7 @@ function addToWishlist(product_id, heartElement) {
     return;
   }
 
-  fetch('http://localhost:8000/wishlist/addItem', {
+  fetch('https://pet-world-fastapi-spsz.onrender.com/wishlist/addItem', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',

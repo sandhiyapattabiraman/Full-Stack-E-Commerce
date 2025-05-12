@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const response = await fetch("http://localhost:8000/order/placeOrder", {
+        const response = await fetch("https://pet-world-fastapi-spsz.onrender.com/order/placeOrder", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

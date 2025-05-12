@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "../../../Assets/pages/html/login.html";
   } else {
     try {
-      const userResponse = await fetch("http://localhost:8000/users/current-user", {
+      const userResponse = await fetch("https://pet-world-fastapi-spsz.onrender.com/users/current-user", {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       usernameDisplay.textContent = `Welcome, ${userData.username}`;
       console.log("Logged in user:", userData.user);
 
-      const ordersResponse = await fetch("http://localhost:8000/order/getOrders", {
+      const ordersResponse = await fetch("https://pet-world-fastapi-spsz.onrender.com/order/getOrders", {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,

@@ -90,81 +90,6 @@ body{
 
 
 
-/* Contact Section Styling */
-.contact-section {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  gap: 20px;
-}
-
-.contact-info, .contact-form-container {
-  flex: 1;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.contact-info h2, .contact-form-container h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.contact-info .info-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.contact-info .info-icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
-
-.contact-form-container form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.contact-form-container form input, 
-.contact-form-container form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.contact-form-container form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.contact-form-container form button:hover {
-  background-color: #0056b3;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .contact-section {
-    flex-direction: column;
-  }
-
-  .contact-info, .contact-form-container {
-    margin-bottom: 20px;
-  }
-}
 
 
 .product1{
@@ -397,7 +322,6 @@ body{
   background-color: #45A049;
 }
 
-/* Style for more dots */
 .more-dots {
   cursor: pointer;
   color: #007bff;
@@ -405,11 +329,10 @@ body{
   padding-left: 8px;
 }
 
-/* Style for the product description */
 .product-description {
   font-size: 16px;
   color: #555;
-  display: none; /* Initially hidden */
+  display: none; 
   margin-top: 8px;
   text-align: left;
   padding: 8px;
@@ -420,14 +343,12 @@ body{
   transition: max-height 0.3s ease, padding 0.3s ease;
 }
 
-/* When product description is visible */
 .product.show-description .product-description {
   display: block;
-  max-height: 200px; /* Adjust to fit content */
+  max-height: 200px;
 }
 
 
-/* Message container styling */
 .message-container {
   position: fixed;
   top: 150px;
@@ -438,106 +359,46 @@ body{
   padding: 10px;
   border-radius: 5px;
   display: none;
-  z-index: 10; /* Ensure the message is above other content */
+  z-index: 10; 
 }
 
 
-/* Success message styling */
 .message-container.success {
   background-color: pink;
 }
 
-/* Error message styling */
 .message-container.error {
   background-color: red;
 }
 
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .product {
-      width: 100%;
-      height: auto;  /* Allow flexibility on height */
-  }
 
-  .product-container {
-      gap: 20px;  /* Adjust gap on smaller screens */
-  }
 
-  input#searchBar {
-      width: 80%;  /* Adjust search bar width on mobile */
-  }
+
+
+.footer {
+  background-color: pink;
+  color: black;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
 }
 
-
-
-
-/* Main Content */
-.contact-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 2rem;
-}
-
-.location-box, .contact-info, .form-section {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 1.5rem;
-  border-radius: 8px;
-}
-
-.location-box h2, .contact-info h2, .form-section h2 {
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-/* Contact Info */
-.contact-info {
-  margin-bottom: 1rem;
-}
-
-.info-item {
+.footer-container {
   display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.info-icon {
-  width: 24px; /* Adjust size as needed */
-  height: 24px;
-  margin-right: 10px; /* Space between icon and text */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #555;
+  padding-top: 15px;
+  font-size: 14px;
 }
-
-/* Form Styling */
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form input, form textarea {
-  width: 96%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-form button {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #555;
-}
-
-
 
 
 

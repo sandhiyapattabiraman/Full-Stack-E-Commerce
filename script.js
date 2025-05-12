@@ -51,7 +51,7 @@ setInterval(nextSlide, 5000);
 
 // display categories
 
-fetch('http://localhost:8000/category/')
+fetch('https://pet-world-fastapi-spsz.onrender.com/category/')
 .then(response => response.json())
 .then(data => {
   const categoriesContainer = document.getElementById("categories");
@@ -74,10 +74,10 @@ fetch('http://localhost:8000/category/')
 
 // update cartCount
 
-let token = localStorage.getItem("user")
+const token = localStorage.getItem("user")
 
 function updateNavbarCartCount() {
-  fetch("http://127.0.0.1:8000/cart/", {
+  fetch("https://pet-world-fastapi-spsz.onrender.com/cart/", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`
@@ -109,43 +109,176 @@ if(token){
 }
 
 
+let wishlistedProductIds = [];
 
 
 
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
 
-  const nameRegex = /^[A-Za-z]+( [A-Za-z]+)?$/;
+async function loadBestsellers() {
+  try {
+    const response = await fetch("https://pet-world-fastapi-spsz.onrender.com/order/bestseller");
 
-  // Validate the name
-  if (!nameRegex.test(name)) {
-    alert('Name must contain only letters and a single space between first and last name (if applicable).');
-    return; 
+    if (!response.ok) {
+      throw new Error("Failed to fetch bestsellers");
+    }
+
+    const data = await response.json();
+
+    const container = document.getElementById("bestsellers");
+    container.innerHTML = ""; 
+
+    data.forEach(product => {
+      const isWishlisted = wishlistedProductIds.includes(product.product_id);
+      const heartIcon = isWishlisted ? "❤️" : "♡";
+
+      const div = document.createElement("div");
+      div.classList.add("product");
+      div.innerHTML = `
+        <span class="wishlist-heart" onclick="addToWishlist('${product.product_id}', this)">${heartIcon}</span>
+        <img src="${product.image_url}" alt="${product.name}" class="product-image">
+        <p>${product.name} 
+          <span class="more-dots" onclick="toggleDescription('${product.product_id}')">...</span>
+        </p>
+        <div class="product-description" id="desc-${product.product_id}" style="display: none;">
+          ${product.description || 'No description available.'}
+        </div>
+        <p>₹${product.price}</p>
+        <button type="button" class="Button" onclick="addToCart('${product.product_id}')">Add to Cart</button>
+        <button type="button" class="Button" onclick="buyNow('${product.product_id}', '${product.name}', '${product.image_url}', '${product.price}')">Buy Now</button>
+      `;
+      container.appendChild(div);
+    });
+  } catch (error) {
+    console.error("Error fetching bestsellers:", error);
+  }
+}
+
+
+function toggleDescription(productName) {
+  const description = document.getElementById(`desc-${productName}`);
+  const productDiv = description.closest('.product'); 
+
+  if (description.style.display === "none" || description.style.display === "") {
+    description.style.display = "block"; 
+    description.style.maxHeight = description.scrollHeight + "px"; 
+    productDiv.classList.add('show-description'); 
+  } else {
+    description.style.display = "none"; 
+    description.style.maxHeight = "0"; 
+    productDiv.classList.remove('show-description'); 
+  }
+}
+
+function addToCart(productId) {
+
+  if (!token) {
+    alert("Please log in first!");
+    return;
   }
 
-  if (name.length < 3) {
-    alert('Name must be at least 3 characters long.');
-    return; 
-  }
+  const cartItem = {
+    product_id: productId,
+    quantity: 1
+  };
 
-
-  console.log('Form submitted with:', {
-    name,
-    email,
-    message
+  fetch('https://pet-world-fastapi-spsz.onrender.com/cart/addToCart', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(cartItem)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert(data.message);
+      updateNavbarCartCount();
+    } else {
+      alert("Failed to add product to cart.");
+    }
+  })
+  .catch(error => {
+    console.error("Error adding product to cart:", error);
+    alert("An error occurred.");
   });
+}
 
-  alert('Thank you for your message!');
 
-  document.getElementById('contact-form').reset();
-});
+function addToWishlist(product_id, heartElement) {
+
+  if (!token) {
+    alert("Please Login first");
+    return;
+  }
+
+  fetch('https://pet-world-fastapi-spsz.onrender.com/wishlist/addItem', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ product_id: product_id })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert(data.message);
+      const isWishlisted = heartElement.textContent === "❤️";
+      heartElement.textContent = isWishlisted ? "♡" : "❤️";
+
+      if (isWishlisted) {
+        wishlistedProductIds = wishlistedProductIds.filter(id => id !== product_id);
+      } else {
+        wishlistedProductIds.push(product_id);
+      }
+    } else {
+      alert("Failed to update wishlist.");
+    }
+  })
+  .catch(error => {
+    console.error("Error updating wishlist:", error);
+    alert("An error occurred.");
+  });
+}
+
+
+function buyNow(productId, name, image, price) {
+  const product = [{
+      id: productId,
+      name: name,
+      image: image,
+      price: price
+  }];
+
+  localStorage.setItem("buyNowProduct", JSON.stringify(product));
+  window.location.href = "../../../Assets/pages/html/buynow.html";
+}
+
+
+
 
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
   updateNavbarCartCount();
+  
+
+  fetch("https://pet-world-fastapi-spsz.onrender.com/wishlist/", {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    wishlistedProductIds = data.wishlist.map(item => item.product_id);
+    loadBestsellers();
+  })
+  .catch(error => {
+    console.error("Error fetching wishlist:", error);
+    loadBestsellers();
+  });
+
+
 });

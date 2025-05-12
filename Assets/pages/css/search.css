@@ -21,10 +21,10 @@ header {
 
 /* Back Button Styling */
 .back-button {
-    position: absolute; /* Positioning the button absolutely */
+    position: absolute; 
     left: 20px;
     top: 50%;
-    transform: translateY(-50%); /* Vertically center the button */
+    transform: translateY(-50%); 
     background-color: white; 
     color: black;
     border: none;
@@ -36,7 +36,7 @@ header {
 }
 
 .back-button:hover {
-    background-color: rgb(247, 144, 161); /* Darker green on hover */
+    background-color: rgb(247, 144, 161); 
 }
 
 /* Centered Header Content */
@@ -57,7 +57,7 @@ h3 {
     letter-spacing: 2px;
     margin: 0;
     text-align: center;
-    flex-grow: 1;  /* Ensures title and input are centered */
+    flex-grow: 1;  
 }
 
 /* Search Bar Styling */
@@ -72,7 +72,7 @@ h3 {
 }
 
 #searchBar:focus {
-    border-color: #4CAF50; /* Green border when focused */
+    border-color: #4CAF50; 
 }
 
 #searchBar::placeholder {
@@ -92,7 +92,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;  /* Reduced the gap */
+    gap: 30px;  
     margin-bottom: 30px;
 }
 
@@ -101,12 +101,12 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 460px; /* Default height */
-    width: 260px; /* Default width */
+    height: 400px; 
+    width: 270px; 
     gap: 10px; 
     background-color: white;
     border-radius: 10px;
-    transition: transform 0.2s ease, height 0.3s ease, width 0.3s ease; /* Add height and width transition */
+    transition: transform 0.2s ease, height 0.3s ease, width 0.3s ease; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
   }
@@ -115,11 +115,10 @@ h1 {
     transform: scale(1.05);
   }
   
-  /* Adjusted Product Card when description is shown */
   .product.show-description {
-    height: auto; /* Adjusted height */
+    height: auto; 
     width: 300px;
-    transition: height 0.3s ease, width 0.3s ease; /* Smooth transition */
+    transition: height 0.3s ease, width 0.3s ease; 
   }
   
   /* Wishlist Icon */
@@ -131,20 +130,15 @@ h1 {
   
   /* Product Image */
   .product img.product-image {
-    height: 200px;
-    width: 200px;
+    height: 190px;
+    width: 190px;
     object-fit: cover;
   }
   
-  /* Star Rating */
-  .product img.star_rating {
-    width: 150px;
-    margin-top: 5px;
-  }
   
   /* Product Name & Price */
   .product p {
-    font-size: 18px; 
+    font-size: 17px; 
     color: #333;
     margin: 0;
     text-align: center;
@@ -178,7 +172,7 @@ h1 {
   .product-description {
     font-size: 16px;
     color: #555;
-    display: none; /* Initially hidden */
+    display: none; 
     margin-top: 8px;
     text-align: left;
     padding: 8px;
@@ -192,7 +186,7 @@ h1 {
   /* When product description is visible */
   .product.show-description .product-description {
     display: block;
-    max-height: 200px; /* Adjust to fit content */
+    max-height: 200px;
   }
   
   
@@ -207,7 +201,7 @@ h1 {
     padding: 10px;
     border-radius: 5px;
     display: none;
-    z-index: 10; /* Ensure the message is above other content */
+    z-index: 10; 
   }
 
   /* Success message styling */
@@ -224,14 +218,14 @@ h1 {
 @media (max-width: 768px) {
     .product {
         width: 100%;
-        height: auto;  /* Allow flexibility on height */
+        height: auto;
     }
 
     .product-container {
-        gap: 20px;  /* Adjust gap on smaller screens */
+        gap: 20px; 
     }
 
     input#searchBar {
-        width: 80%;  /* Adjust search bar width on mobile */
+        width: 80%;  
     }
 }

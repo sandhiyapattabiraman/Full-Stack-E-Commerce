@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const itemsContainer = document.getElementById("items");
   const token = localStorage.getItem("user")
 
-  fetch("http://localhost:8000/wishlist/", {
+  fetch("https://pet-world-fastapi-spsz.onrender.com/wishlist/", {
     headers: {
       "Authorization": `Bearer ${token}`
     }
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const url = new URL('http://localhost:8000/products/search');
+      const url = new URL('https://pet-world-fastapi-spsz.onrender.com/products/search');
       url.searchParams.append('query', query); 
 
       const response = await fetch(url);
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           productElement.innerHTML = `
             <span class="wishlist-heart" onclick="addToWishlist('${product.id}', this)">${heartIcon}</span>
-            <img src="${product.Image}" alt="${product.Product_Name}" class="product-image" style="width: 150px; height: 150px; object-fit: cover;">
+            <img src="${product.Image}" alt="${product.Product_Name}" class="product-image">
             <p>${product.Product_Name}
               <span class="more-dots" onclick="toggleDescription('${product.Product_Name}')">...</span>
             </p>
@@ -98,7 +98,7 @@ window.addToCart = function(productId) {
     quantity: 1
   };
 
-  fetch('http://localhost:8000/cart/addToCart', {
+  fetch('https://pet-world-fastapi-spsz.onrender.com/cart/addToCart', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ window.addToCart = function(productId) {
   });
 }
 
-function addToWishlist(product_id, heartElement) {
+window.addToWishlist = function(product_id, heartElement) {
   let token = localStorage.getItem('user');
 
   if (!token) {
@@ -128,7 +128,7 @@ function addToWishlist(product_id, heartElement) {
     return;
   }
 
-  fetch('http://localhost:8000/wishlist/addItem', {
+  fetch('https://pet-world-fastapi-spsz.onrender.com/wishlist/addItem', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
@@ -159,12 +159,12 @@ function addToWishlist(product_id, heartElement) {
 }
 
 window.buyNow = function(productId, name, image, price) {
-  const product = {
+  const product = [{
       id: productId,
       name: name,
       image: image,
       price: price
-  };
+  }];
 
   localStorage.setItem("buyNowProduct", JSON.stringify(product));
   window.location.href = "../../../Assets/pages/html/buynow.html";

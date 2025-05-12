@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("http://localhost:8000/wishlist/", {
+  fetch("https://pet-world-fastapi-spsz.onrender.com/wishlist/", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`
@@ -56,7 +56,7 @@ window.addToCart = function(productId) {
     quantity: 1
   };
 
-  fetch('http://localhost:8000/cart/addToCart', {
+  fetch('https://pet-world-fastapi-spsz.onrender.com/cart/addToCart', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ window.removeFromWishlist = function(productId) {
     return;
   }
 
-  fetch(`http://localhost:8000/wishlist/removeItem/${productId}`, {
+  fetch(`https://pet-world-fastapi-spsz.onrender.com/wishlist/removeItem/${productId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

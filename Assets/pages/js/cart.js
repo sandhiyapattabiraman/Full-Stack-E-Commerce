@@ -9,7 +9,7 @@ if (token == null) {
 }
 
 function loadCartItems() {
-  fetch("http://127.0.0.1:8000/cart/", {
+  fetch("https://pet-world-fastapi-spsz.onrender.com/cart/", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`
@@ -53,7 +53,7 @@ function loadCartItems() {
 window.remove = function (product_id) {
   let token = localStorage.getItem("user");
 
-  fetch(`http://127.0.0.1:8000/cart/deleteItem/${product_id}`, {
+  fetch(`https://pet-world-fastapi-spsz.onrender.com/cart/deleteItem/${product_id}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Bearer ${token}`
@@ -84,7 +84,7 @@ window.decreaseQuantity = function (product_id, currentQty) {
 function updateQuantity(product_id, change) {
   let token = localStorage.getItem("user");
 
-  fetch(`http://127.0.0.1:8000/cart/update_quantity/${product_id}`, {
+  fetch(`https://pet-world-fastapi-spsz.onrender.com/cart/update_quantity/${product_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    fetch("http://127.0.0.1:8000/cart/", {
+    fetch("https://pet-world-fastapi-spsz.onrender.com/cart/", {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
