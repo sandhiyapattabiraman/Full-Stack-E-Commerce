@@ -94,7 +94,6 @@ function updateNavbarCartCount() {
       return;
     }
 
-    // Show only how many different products are there
     const uniqueItemCount = items.length;
     cartCountEl.textContent = uniqueItemCount;
   })
