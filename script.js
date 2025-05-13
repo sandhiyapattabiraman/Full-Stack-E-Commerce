@@ -51,10 +51,7 @@ setInterval(nextSlide, 5000);
 
 // display categories
 
-fetch('https://pet-world-fastapi-spsz.onrender.com/category/', {
-  method: "GET",
-  credentials: "include"
-})
+fetch('https://pet-world-fastapi-spsz.onrender.com/category/')
 .then(response => response.json())
 .then(data => {
   const categoriesContainer = document.getElementById("categories");
