@@ -51,7 +51,10 @@ setInterval(nextSlide, 5000);
 
 // display categories
 
-fetch('https://pet-world-fastapi-spsz.onrender.com/category/')
+fetch('https://pet-world-fastapi-spsz.onrender.com/category/', {
+  method: "GET",
+  credentials: "include"
+})
 .then(response => response.json())
 .then(data => {
   const categoriesContainer = document.getElementById("categories");
@@ -181,6 +184,7 @@ function addToCart(productId) {
   };
 
   fetch('https://pet-world-fastapi-spsz.onrender.com/cart/addToCart', {
+
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
