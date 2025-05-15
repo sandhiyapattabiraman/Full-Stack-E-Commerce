@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       } else {
         const result = await ordersResponse.json();
         alert(result.detail || "Failed to fetch orders.");
+        window.location.href = "../../../Assets/pages/html/login.html";
       }
     } catch (err) {
       console.error("Error:", err);
