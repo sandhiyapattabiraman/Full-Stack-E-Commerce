@@ -244,6 +244,10 @@ function addToWishlist(product_id, heartElement) {
 
 
 function buyNow(productId, name, image, price) {
+  if(!token){
+    alert("Please Login first");
+    return;
+  }
   const product = [{
       id: productId,
       name: name,

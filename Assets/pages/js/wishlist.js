@@ -110,6 +110,11 @@ window.removeFromWishlist = function(productId) {
 
 
 window.buyNow = function(productId, name, image, price) {
+  let token = localStorage.getItem("user")
+  if(!token){
+    alert("Please Login first");
+    return;
+  }
   const product = [{
       id: productId,
       name: name,
