@@ -244,6 +244,7 @@ function addToWishlist(product_id, heartElement) {
 
 
 function buyNow(productId, name, image, price) {
+  console.log(token)
   if(!token){
     alert("Please Login first");
     return;
@@ -256,7 +257,7 @@ function buyNow(productId, name, image, price) {
   }];
 
   localStorage.setItem("buyNowProduct", JSON.stringify(product));
-  window.location.href = "../../../Assets/pages/html/buynow.html";
+  window.location.href = "./Assets/pages/html/buynow.html";
 }
 
 

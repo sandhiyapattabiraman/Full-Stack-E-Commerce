@@ -121,29 +121,34 @@
 const form = document.getElementById("form");
 
 form.addEventListener("submit", async function (event) {
-    event.preventDefault();
-    const user ={
-      email : document.getElementById("email").value,
-      password : document.getElementById("password").value
-    }
-  
-    try {
-        console.log(user)
-      const response = await fetch("https://pet-world-fastapi-spsz.onrender.com/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-      });
-  
+  event.preventDefault();
+
+  const user = {
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+  };
+
+  try {
+    console.log(user);
+    const response = await fetch("https://pet-world-fastapi-spsz.onrender.com/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (response.ok) {
       const result = await response.json();
-      localStorage.setItem('user', result.access_token)
+      localStorage.setItem("user", result.access_token);
       alert("Login Successful");
-      window.location.href = "../../../index.html"
-      f
-    } catch (error) {
-      console.error("Error adding product:", error);
+      window.location.href = "../../../index.html";
+    } else {
+      const errorData = await response.json();
+      alert("Login failed: " + ( "Invalid Email or Password"));
     }
-  
-  })
+  } catch (error) {
+    console.error("Error login", error);
+    alert("An error occurred. Please try again.");
+  }
+});
