@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         displayOrders(orders);
       } else {
         const result = await ordersResponse.json();
-        alert(result.detail || "Failed to fetch orders.");
+        ordersContainer.innerHTML = ''; 
+        ordersContainer.innerHTML = '<p style="font-size: 16px">No orders found.</p>';
+        
       }
     } catch (err) {
       console.error("Error:", err);
@@ -45,19 +47,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   function displayOrders(orders) {
     ordersContainer.innerHTML = ''; 
 
-    if (orders.length === 0) {
-      ordersContainer.innerHTML = '<p>No orders found.</p>';
-      return;
-    }
+    
 
     orders.forEach(order => {
       const orderElement = document.createElement("div");
       orderElement.classList.add("order-item");
 
+
+
       orderElement.innerHTML = `
     <div class="order-items">
       <p>Date: ${new Date(order.created_at).toLocaleDateString()}</p>
-      <p>Total: ₹${order.product_price * order.quantity}</p>  <!-- Assuming the total is price * quantity -->
+      <p>Total: ₹${order.product_price * order.quantity}</p> 
       <div class="order-item-details">
         <img src="${order.product_image }" alt="${order.product_name}" style="width: 50px; height: 50px; object-fit: cover;">
         <p><strong>${order.product_name}</strong></p>
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     </div>
 `;
-
+      
 
       ordersContainer.appendChild(orderElement);
     });

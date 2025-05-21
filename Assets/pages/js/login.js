@@ -149,6 +149,6 @@ form.addEventListener("submit", async function (event) {
     }
   } catch (error) {
     console.error("Error login", error);
-    alert("An error occurred. Please try again.");
+    alert("Login failed: " + ( "Invalid Email or Password"));
   }
 });
