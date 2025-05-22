@@ -49,6 +49,33 @@ setInterval(nextSlide, 5000);
 
 
 
+
+async function checkUser() {
+  const token = localStorage.getItem("user");
+
+  try {
+    const userResponse = await fetch("https://pet-world-fastapi-spsz.onrender.com/users/current-user", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+
+    if (userResponse.status === 401) {
+      localStorage.removeItem("user");
+      return;
+    }
+
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
+
+
+
+
+
+
 // display categories
 
 fetch('https://pet-world-fastapi-spsz.onrender.com/category/')
@@ -279,10 +306,12 @@ document.addEventListener("DOMContentLoaded", () => {
   .then(data => {
     wishlistedProductIds = data.wishlist.map(item => item.product_id);
     loadBestsellers();
+    checkUser();
   })
   .catch(error => {
     console.error("Error fetching wishlist:", error);
     loadBestsellers();
+    checkUser();
   });
 
 

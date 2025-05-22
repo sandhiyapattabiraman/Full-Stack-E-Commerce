@@ -17,6 +17,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       });
 
+      if (userResponse.status === 401) {
+    localStorage.removeItem("user");
+    alert("Session expired. Please log in again.");
+    window.location.href = "../../../Assets/pages/html/login.html";
+    return;
+  }
+
       const userData = await userResponse.json();
       usernameDisplay.textContent = `Welcome, ${userData.username}`;
       console.log("Logged in user:", userData.user);
